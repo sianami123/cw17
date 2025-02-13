@@ -31,6 +31,7 @@ export default function ShoppingCart() {
       <main className="flex flex-wrap p-2 gap-2">
         {productsData?.map((product) => (
           <ShoppingCartProduct
+            key={product.id}
             img={product.image}
             name={product.name}
             price={product.price}

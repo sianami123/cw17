@@ -17,13 +17,12 @@ type IproductsArray = Iproduct[];
 type ProductAction =
   | { type: "ADD_PRODUCT"; payload: Iproduct }
   | { type: "REMOVE_PRODUCT"; payload: number }
-  | { type: "SAVE_PRODUCT"; payload: Iproduct[] }
   | { type: "UPDATE_PRODUCT"; payload: Iproduct };
 
 const productReducer = (state: IproductsArray, action: ProductAction) => {
   switch (action.type) {
-    case "SAVE_PRODUCT":
-      return action.payload;
+    case "ADD_PRODUCT":
+      return [...state, action.payload];
     case "REMOVE_PRODUCT":
       return state.filter((product) => product.id !== action.payload);
     case "UPDATE_PRODUCT":
