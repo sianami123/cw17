@@ -1,7 +1,7 @@
 import { createContext, useState } from "react";
 import { useReducer } from "react";
 import Shop from "../components/shoppingcart/shop";
-
+import CartModal from "../components/shoppingcart/cart_modal";
 export interface Iproduct {
   image: string;
   name: string;
@@ -21,7 +21,7 @@ type ProductAction =
 interface IproductContextType {
   state: IproductsArray;
   dispatch: React.Dispatch<ProductAction>;
-  setShowCartModal: (show: false) => void;
+  setShowCartModal: (show: boolean) => void;
 }
 
 export const productContext = createContext<IproductContextType | undefined>(
@@ -48,6 +48,7 @@ export default function ShopPage() {
   const [showCartModal, setShowCartModal] = useState(false);
   return (
     <productContext.Provider value={{ state, dispatch, setShowCartModal }}>
+      {showCartModal && <CartModal />}
       <Shop />
     </productContext.Provider>
   );
