@@ -30,13 +30,15 @@ export default function ShoppingCart() {
       <Header />
       <main className="flex flex-wrap p-2 gap-2">
         {productsData?.map((product) => (
-          <ShoppingCartProduct
-            key={product.id}
-            img={product.image}
-            name={product.name}
-            price={product.price}
-            star={product.star}
-          />
+          <div key={product.id}>
+            <ShoppingCartProduct
+              img={product.image}
+              name={product.name}
+              price={product.price}
+              star={product.star}
+              id={product.id}
+            />
+          </div>
         ))}
       </main>
     </div>

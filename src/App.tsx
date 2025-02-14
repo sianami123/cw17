@@ -1,6 +1,6 @@
 import axios from "axios";
 import ShoppingCartPage from "./pages/shoppingcart";
-import { useReducer, createContext, useEffect } from "react";
+import { useReducer, createContext, useEffect, useState } from "react";
 import CartModal from "./components/cart_modal/cart_modal";
 
 export interface Iproduct {
@@ -9,7 +9,7 @@ export interface Iproduct {
   price: number;
   star: number;
   id?: number;
-  cartItem?: number;
+  cartItem: number;
 }
 
 type IproductsArray = Iproduct[];
@@ -37,6 +37,8 @@ const productReducer = (state: IproductsArray, action: ProductAction) => {
 interface IproductContextType {
   state: IproductsArray;
   dispatch: React.Dispatch<ProductAction>;
+  showCart: boolean;
+  setShowCart: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export const productContext = createContext<IproductContextType | undefined>(
@@ -44,12 +46,15 @@ export const productContext = createContext<IproductContextType | undefined>(
 );
 
 function App() {
-  const [state, dispatch] = useReducer(productReducer, []);
+  const [cartState, dispatch] = useReducer(productReducer, []);
+  const [showCart, setShowCart] = useState(false);
 
-  console.log(state);
+  console.log(cartState);
   return (
-    <productContext.Provider value={{ state, dispatch }}>
-      {/* <CartModal /> */}
+    <productContext.Provider
+      value={{ state: cartState, dispatch, showCart, setShowCart }}
+    >
+      {showCart && <CartModal />}
       <ShoppingCartPage />
     </productContext.Provider>
   );
