@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { productContext } from "../../pages/shop_page";
+import { productContext } from "./context";
 
 interface ShoppingCartProductProps {
   img: string;

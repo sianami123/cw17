@@ -1,6 +1,6 @@
 import bagIcon from "../../assets/bag-icon.svg";
 import { useContext } from "react";
-import { productContext } from "../../pages/shop_page";
+import { productContext } from "./context";
 
 export default function Header() {
   const stateData = useContext(productContext)?.state;

@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { productContext } from "../../pages/shop_page";
+import { productContext } from "./context";
 
 export default function CartModal() {
   const contextData = useContext(productContext);
