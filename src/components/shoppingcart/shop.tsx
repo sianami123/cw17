@@ -2,7 +2,7 @@ import ShoppingCartProduct from "./shop_card";
 import Header from "./header";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { Iproduct } from "../../pages/shop_page";
+import { Iproduct } from "./types";
 
 export default function Shop() {
   const [productsData, setProductsData] = useState<Iproduct[]>([]);
