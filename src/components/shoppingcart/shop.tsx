@@ -31,11 +31,18 @@ export default function Shop() {
         {productsData?.map((product) => (
           <div key={product.id}>
             <ShoppingCartProduct
+<<<<<<< HEAD:src/components/shoppingcart/shop.tsx
               id={product.id}
+=======
+>>>>>>> ebc945a67e0504aaa6e457ac6650fb60d8a443b5:src/components/shoppingcart/shoppingcart.tsx
               img={product.image}
               name={product.name}
               price={product.price}
               star={product.star}
+<<<<<<< HEAD:src/components/shoppingcart/shop.tsx
+=======
+              id={product.id}
+>>>>>>> ebc945a67e0504aaa6e457ac6650fb60d8a443b5:src/components/shoppingcart/shoppingcart.tsx
             />
           </div>
         ))}
