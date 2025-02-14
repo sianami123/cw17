@@ -1,12 +1,10 @@
-import prod1 from "../../assets/prod1.png";
-import ShoppingCartProduct from "./shoppingcart_product";
+import ShoppingCartProduct from "./shop_product";
 import Header from "./header";
-import { useContext, useEffect, useState } from "react";
-import { productContext } from "../../App";
+import { useEffect, useState } from "react";
 import axios from "axios";
-import { Iproduct } from "../../App";
+import { Iproduct } from "../../pages/shop_page";
 
-export default function ShoppingCart() {
+export default function Shop() {
   const [productsData, setProductsData] = useState<Iproduct[]>([]);
 
   useEffect(() => {
@@ -17,6 +15,7 @@ export default function ShoppingCart() {
         );
         if (res.status === 200) {
           setProductsData(res.data);
+          console.log(res.data);
         }
       } catch (e) {
         console.log(e);
@@ -30,13 +29,15 @@ export default function ShoppingCart() {
       <Header />
       <main className="flex flex-wrap p-2 gap-2">
         {productsData?.map((product) => (
-          <ShoppingCartProduct
-            key={product.id}
-            img={product.image}
-            name={product.name}
-            price={product.price}
-            star={product.star}
-          />
+          <div key={product.id}>
+            <ShoppingCartProduct
+              id={product.id}
+              img={product.image}
+              name={product.name}
+              price={product.price}
+              star={product.star}
+            />
+          </div>
         ))}
       </main>
     </div>

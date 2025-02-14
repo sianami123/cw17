@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { productContext } from "../../App";
+import { productContext } from "../../pages/shop_page";
 
 interface ShoppingCartProductProps {
   img: string;
@@ -9,7 +9,7 @@ interface ShoppingCartProductProps {
   id?: number;
 }
 
-export default function ShoppingCartProduct({
+export default function ShopProduct({
   img,
   name,
   price,
@@ -17,12 +17,16 @@ export default function ShoppingCartProduct({
   id,
 }: ShoppingCartProductProps) {
   const dispatchData = useContext(productContext)?.dispatch;
-  console.log(dispatchData);
+  const stateData = useContext(productContext)?.state;
 
   return (
     <div
       key={id}
-      className="flex flex-col items-center justify-center border-2 border-gray-300 rounded-md"
+      className={`flex flex-col items-center justify-center border-2 rounded-md ${
+        stateData?.some((product) => product.id === id)
+          ? "border-green-500"
+          : "border-gray-300"
+      }`}
     >
       <img className="w-44 h-44" src={img} />
       <div className="text-white">{star}</div>
