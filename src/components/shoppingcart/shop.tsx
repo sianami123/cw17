@@ -1,13 +1,19 @@
 import ShoppingCartProduct from "./shop_card";
 import Header from "./header";
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef, useMemo } from "react";
 import axios from "axios";
 import { Iproduct } from "./types";
 
 export default function Shop() {
   const [productsData, setProductsData] = useState<Iproduct[]>([]);
-  const [filteredProducts, setFilteredProducts] = useState<Iproduct[]>([]);
   const inputRef = useRef<HTMLInputElement>(null);
+  const filteredProducts = useMemo(() => {
+    return productsData.filter((product) =>
+      product.name
+        .toLowerCase()
+        .includes(inputRef.current?.value?.toLowerCase() ?? "")
+    );
+  }, [productsData, inputRef.current?.value]);
 
   useEffect(() => {
     async function fetchProducts() {
@@ -37,17 +43,7 @@ export default function Shop() {
           className="p-2 rounded-md"
           ref={inputRef}
         />
-        <button
-          onClick={() => {
-            const filteredProducts = productsData.filter((product) =>
-              product.name
-                .toLowerCase()
-                .includes(inputRef.current?.value?.toLowerCase() ?? "")
-            );
-            setFilteredProducts(filteredProducts);
-          }}
-          className="p-2 rounded-md bg-blue-500 text-white"
-        >
+        <button className="p-2 rounded-md bg-blue-500 text-white">
           Search
         </button>
       </div>
