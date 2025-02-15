@@ -67,7 +67,7 @@ export default function ShopCard({
       </div>
 
       {cartData?.find((product) => product.id === id) ? (
-        <div className="flex items-center justify-between mt-auto">
+        <div className="flex items-center justify-between mt-auto px-2">
           <button
             className="w-10 h-10 rounded-full bg-gray-100 hover:bg-gray-200 flex items-center justify-center text-gray-800 font-bold transition-colors"
             onClick={() => {

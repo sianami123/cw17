@@ -1,4 +1,4 @@
-import { Iproduct, IproductsArray, ProductAction } from "./types";
+import { IproductsArray, ProductAction } from "./types";
 
 export const productReducer = (
   state: IproductsArray,
